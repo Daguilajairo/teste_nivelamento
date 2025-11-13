@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "07ab3700-7aef-4a44-a404-93c3689952e9",
+		"name": "API Operadoras de Saúde.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50059790",
+		"_collection_link": "https://devjairodaguila-5421740.postman.co/workspace/Jairo-D'aguila's-Workspace~886baf88-89a7-4d03-890d-7199691f51be/collection/50059790-07ab3700-7aef-4a44-a404-93c3689952e9?action=share&source=collection_link&creator=50059790"
+	},
+	"item": [
+		{
+			"name": "buscar operadora",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/buscar?nome=amil\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "amil\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status da api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

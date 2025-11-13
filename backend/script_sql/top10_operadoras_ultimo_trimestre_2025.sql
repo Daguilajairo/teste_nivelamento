@@ -1,0 +1,10 @@
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('BRADESCO SAÚDE S.A.', 5711, 23023560453.79);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('SUL AMERICA COMPANHIA DE SEGURO SAÚDE', 6246, 16304328776.48);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('AMIL ASSISTÊNCIA MÉDICA INTERNACIONAL S.A.', 326305, 15547741319.31);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('NOTRE DAME INTERMÉDICA SAÚDE S.A.', 359017, 7366017633.47);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('HAPVIDA ASSISTENCIA MEDICA S.A.', 368253, 7365696272.71);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('CAIXA DE ASSISTÊNCIA DOS FUNCIONÁRIOS DO BANCO DO BRASIL', 346659, 5639944974.71);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('UNIMED NACIONAL - COOPERATIVA CENTRAL', 339679, 4894137779.38);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('PREVENT SENIOR PRIVATE OPERADORA DE SAÚDE LTDA', 302147, 4335967253.42);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('UNIMED BELO HORIZONTE COOPERATIVA DE TRABALHO MÉDICO', 343889, 4069877151.31);
+INSERT INTO top10_operadoras_ultimo_trimestre_2025 (`Razao_Social`, `REG_ANS`, `total_despesas`) VALUES ('PORTO SEGURO - SEGURO SAÚDE S/A', 582, 3875903249.04);
