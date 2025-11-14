@@ -12,3 +12,5 @@ export async function buscarOperadoraAPI(nome) {
     return { erro: error.message };
   }
 }
+
+console.log("API URL:", import.meta.env.VITE_API_URL);

@@ -96,10 +96,7 @@ body {
 
 .table-header, .table-row {
  display: grid;
- /* Define 3 colunas com tamanhos relativos: 
-  Razão Social (2 partes), CNPJ (1.5 partes), Modalidade (1.5 partes) 
- */
- grid-template-columns: 2fr 1.5fr 1.5fr;
+ grid-template-columns: 2fr 1fr 1fr;
  gap: 1rem;
  padding: 0.75rem 1rem;
  text-align: left;
@@ -116,18 +113,19 @@ body {
 }
 
 .table-row p {
- /* Garante que o texto não quebre de forma estranha */
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal; /* Permite quebra de linha */
+  word-break: break-word;
 }
+
 
 .table-body {
  margin-top: 0.5rem;
  text-align: center;
  border: 1px solid #bdc3c7;
  border-radius: 0.5rem;
- overflow: hidden;
+ 
 }
 
 .table-body > p {

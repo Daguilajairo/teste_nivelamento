@@ -30,7 +30,7 @@
             v-for="(item, index) in resultados"
             :key="item.CNPJ || index"
             class="table-row"
-          >
+          > 
             <p>{{ item.Operadora }}</p>
             <p>{{ item.CNPJ }}</p>
             <p>{{ item.Modalidade }}</p>
@@ -60,6 +60,7 @@ export default {
   },
   watch: {
     nome(novoValor) {
+      console.log("Valor do input:", novoValor); // 🔥 DEBUG
       clearTimeout(this.debounceTimer);
       this.erroApi = null;
 
@@ -87,7 +88,7 @@ export default {
           // Recebe diretamente do backend
           this.resultados = data;
           this.erroApi = null;
-          
+
         } else if (data && data.mensagem) {
           this.resultados = [];
           this.erroApi = null;
