@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .title h1 {
+    font-size: 1.2rem;
+  }
+
+  .form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn-search {
+    width: 100%;
+  }
+
+  .table-header, .table-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
