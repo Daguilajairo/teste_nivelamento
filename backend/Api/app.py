@@ -17,9 +17,9 @@ app.add_middleware(
 
 
 try:
-    print("📂 Lendo CSV:", csv_path)
+    print(" Lendo CSV:", csv_path)
     df = pd.read_csv(csv_path, encoding="utf-8", sep=";")
-    print("✅ CSV carregado com sucesso! Linhas:", len(df))
+    print(" CSV carregado com sucesso! Linhas:", len(df))
 except Exception as e:
     print(" Erro ao carregar CSV:", e)
     df = None
