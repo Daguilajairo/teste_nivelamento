@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-const baseURL = 'https://teste-nivelamento-7tiv.onrender.com';
+const baseURL = "http://127.0.0.1:8000";
 
 export async function buscarOperadoraAPI(nome) {
-  const response = await axios.get(`${baseURL}/buscar`, { params: { nome } });
-  return response.data;
+  try {
+    const response = await axios.get(`${baseURL}/buscar`, { params: { nome } });
+    return response.data;
+  } catch (error) {
+    console.error("Erro na chamada da API:", error);
+    return { erro: error.message };
+  }
 }

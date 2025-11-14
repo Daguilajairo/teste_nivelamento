@@ -1,13 +1,14 @@
 import os
 import pandas as pd
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+import traceback
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(BASE_DIR, "..", "data", "operadoras_plano_saude", "Relatorio_cadop.csv")
+csv_path = os.path.join(BASE_DIR, "backend", "data", "operadoras_plano_saude", "Relatorio_cadop.csv")
+df = None
 
 app = FastAPI()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,15 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 try:
-    print(" Lendo CSV:", csv_path)
     df = pd.read_csv(csv_path, encoding="utf-8", sep=";")
-    print(" CSV carregado com sucesso! Linhas:", len(df))
 except Exception as e:
-    print(" Erro ao carregar CSV:", e)
+    print(f"ERRO AO CARREGAR CSV: {e}")
     df = None
-
 
 @app.get("/")
 def root():
@@ -31,43 +28,33 @@ def root():
 
 @app.get("/buscar")
 def buscar_operadora(nome: str = Query(...)):
-    nome = nome.strip()  
-    ...
+    global df
+    if df is None:
+        raise HTTPException(
+            status_code=500,
+            detail="Dados da operadora não carregados. CSV pode estar faltando."
+        )
 
-    
+    nome = nome.strip()
+    if not nome:
+        return {"mensagem": "Informe um nome válido para busca."}
 
-    """
-    Busca operadoras de plano de saúde pelo nome no CSV.
-    Exemplo: /buscar?nome=unimed
-    """
     try:
-        print(f" Buscando operadora com nome: {nome}")
-
         nome_lower = nome.lower()
-
-
-        resultados = df[
-        df["Razao_Social"].astype(str).str.lower().str.startswith(nome_lower, na=False)
-]
-
-
-
-        print(f" Linhas encontradas: {len(resultados)}")
+        resultados = df[df["Razao_Social"].astype(str).str.lower().str.startswith(nome_lower, na=False)]
 
         if resultados.empty:
             return {"mensagem": f"Nenhum resultado encontrado para '{nome}'."}
 
-        
         colunas_principais = [
             "REGISTRO_OPERADORA", "CNPJ", "Razao_Social",
             "Modalidade", "Cidade", "UF",
             "Representante", "Cargo_Representante"
         ]
         resultados = resultados[colunas_principais]
-
         return resultados.head(10).to_dict(orient="records")
 
+    except KeyError as ke:
+        raise HTTPException(status_code=500, detail=f"Erro de coluna: {str(ke)}")
     except Exception as e:
-        import traceback
-        print(" ERRO AO BUSCAR:", traceback.format_exc())
-        return {"erro": str(e)}
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
