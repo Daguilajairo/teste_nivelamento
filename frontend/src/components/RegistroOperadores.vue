@@ -84,7 +84,7 @@ export default {
         const data = await buscarOperadoraAPI(searchName);
 
         if (Array.isArray(data)) {
-          // Garante que todas as chaves existam para evitar undefined
+          
           this.resultados = data.map(item => ({
             Operadora: item.Operadora || item.Razao_Social || "Não informado",
             CNPJ: item.CNPJ || "Não informado",

@@ -21,14 +21,14 @@ body {
  min-height: 100vh;
  width: 100vw;
  flex-direction: column;
- justify-content: flex-start; /* Alinhamento superior */
+ justify-content: flex-start; 
  align-items: center;
  padding-top: 5vh;
 }
 
 .card {
  width: 95%;
- max-width: 800px; /* Aumentei a largura máxima para a tabela */
+ max-width: 800px; 
  background: white;
  padding: 2rem;
  border-radius: 1rem;
@@ -85,7 +85,7 @@ body {
  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Estilos da Tabela --- */
+
 .table-header {
  background-color: #ecf0f1;
  border-radius: 0.5rem 0.5rem 0 0;
@@ -115,7 +115,7 @@ body {
 .table-row p {
   overflow: visible;
   text-overflow: clip;
-  white-space: normal; /* Permite quebra de linha */
+  white-space: normal; 
   word-break: break-word;
 }
 
@@ -129,12 +129,11 @@ body {
 }
 
 .table-body {
-  max-height: 300px; /* ou qualquer valor */
+  max-height: none; 
   overflow-y: auto;
 }
 
-/* --- Media Queries (Responsividade) --- */
-/* (Conteúdo do mediaquery.css pode ser incorporado aqui) */
+
 @media (max-width: 600px) {
  .card {
   padding: 1rem;
@@ -149,14 +148,14 @@ body {
  }
 
  .table-header, .table-row {
-  /* Muda para uma coluna empilhada em telas pequenas */
+  
   grid-template-columns: 1fr; 
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #bdc3c7;
  }
 
  .table-header p, .table-row p {
-  white-space: normal; /* Permite que o texto quebre */
+  white-space: normal; 
   text-align: center;
  }
  

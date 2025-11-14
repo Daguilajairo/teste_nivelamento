@@ -1,3 +1,5 @@
+from fastapi import HTTPException, Query
+
 @app.get("/buscar")
 def buscar_operadora(nome: str = Query(...)):
     global df
@@ -18,12 +20,12 @@ def buscar_operadora(nome: str = Query(...)):
         if resultados.empty:
             return {"mensagem": f"Nenhum resultado encontrado para '{nome}'."}
 
-        # ----------------- AQUI -----------------
+        
         resultados_front = resultados[['Razao_Social', 'CNPJ', 'Modalidade']].rename(
             columns={'Razao_Social': 'Operadora'}
         )
         return resultados_front.to_dict(orient="records")
-        # ---------------------------------------
+        
 
     except KeyError as ke:
         raise HTTPException(status_code=500, detail=f"Erro de coluna: {str(ke)}")
