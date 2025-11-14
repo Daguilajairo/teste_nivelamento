@@ -5,15 +5,16 @@ import os
 
 app = FastAPI()
 
-# Permite requisições do front local (Vite/Vue)
+# Permite requisições do front local (Vite/Vue) e remoto (para teste)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],  # Para teste rápido, aceita qualquer origem
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Caminho do CSV
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_DIR, "data", "operadoras_plano_saude", "Relatorio_cadop.csv")
 
@@ -22,6 +23,9 @@ def buscar_operadora(nome: str = Query(..., min_length=1)):
     try:
         # Lê o CSV com separador ponto e vírgula
         df = pd.read_csv(CSV_PATH, sep=';')
+
+        # Remove espaços invisíveis nos nomes das colunas
+        df.columns = df.columns.str.strip()
 
         # Limpa espaços e valores nulos na coluna Razao_Social
         df['Razao_Social'] = df['Razao_Social'].astype(str).str.strip().fillna('')
@@ -39,5 +43,7 @@ def buscar_operadora(nome: str = Query(..., min_length=1)):
 
     except FileNotFoundError:
         return {"erro": "Arquivo CSV não encontrado"}
+    except KeyError as ke:
+        return {"erro": f"Coluna não encontrada no CSV: {str(ke)}"}
     except Exception as e:
         return {"erro": str(e)}

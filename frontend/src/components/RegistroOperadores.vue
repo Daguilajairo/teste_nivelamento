@@ -30,7 +30,7 @@
             v-for="(item, index) in resultados"
             :key="item.CNPJ || index"
             class="table-row"
-          > 
+          >
             <p>{{ item.Operadora }}</p>
             <p>{{ item.CNPJ }}</p>
             <p>{{ item.Modalidade }}</p>
@@ -60,7 +60,6 @@ export default {
   },
   watch: {
     nome(novoValor) {
-      console.log("Valor do input:", novoValor); // 🔥 DEBUG
       clearTimeout(this.debounceTimer);
       this.erroApi = null;
 
@@ -85,10 +84,13 @@ export default {
         const data = await buscarOperadoraAPI(searchName);
 
         if (Array.isArray(data)) {
-          // Recebe diretamente do backend
-          this.resultados = data;
+          // Garante que todas as chaves existam para evitar undefined
+          this.resultados = data.map(item => ({
+            Operadora: item.Operadora || item.Razao_Social || "Não informado",
+            CNPJ: item.CNPJ || "Não informado",
+            Modalidade: item.Modalidade || "Não informado",
+          }));
           this.erroApi = null;
-
         } else if (data && data.mensagem) {
           this.resultados = [];
           this.erroApi = null;
