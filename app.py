@@ -22,7 +22,7 @@ def buscar_operadora(nome: str = Query(...)):
         resultados_front = resultados[['Razao_Social', 'CNPJ', 'Modalidade']].rename(
             columns={'Razao_Social': 'Operadora'}
         )
-        return resultados_front.head(10).to_dict(orient="records")
+        return resultados_front.to_dict(orient="records")
         # ---------------------------------------
 
     except KeyError as ke:

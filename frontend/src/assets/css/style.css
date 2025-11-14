@@ -128,9 +128,9 @@ body {
  
 }
 
-.table-body > p {
- padding: 1rem;
- color: #7f8c8d;
+.table-body {
+  max-height: 300px; /* ou qualquer valor */
+  overflow-y: auto;
 }
 
 /* --- Media Queries (Responsividade) --- */
