@@ -23,10 +23,11 @@ def buscar_operadora(nome: str = Query(..., min_length=1)):
         # Lê o CSV com separador ponto e vírgula
         df = pd.read_csv(CSV_PATH, sep=';')
 
-        # Converte a coluna Razao_Social para string e filtra
-        df_filtrado = df[df['Razao_Social'].astype(str).str.lower().str.startswith(nome.lower())]
+        # Limpa espaços e valores nulos na coluna Razao_Social
+        df['Razao_Social'] = df['Razao_Social'].astype(str).str.strip().fillna('')
 
-
+        # Filtra pelo início do nome (case insensitive)
+        df_filtrado = df[df['Razao_Social'].str.lower().str.startswith(nome.lower())]
 
         # Seleciona apenas as colunas necessárias e renomeia para o front
         df_front = df_filtrado[['Razao_Social', 'CNPJ', 'Modalidade']].rename(

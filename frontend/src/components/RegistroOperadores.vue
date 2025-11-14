@@ -87,6 +87,7 @@ export default {
           // Recebe diretamente do backend
           this.resultados = data;
           this.erroApi = null;
+          
         } else if (data && data.mensagem) {
           this.resultados = [];
           this.erroApi = null;
