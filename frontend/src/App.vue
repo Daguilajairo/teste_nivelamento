@@ -1,15 +1,23 @@
+<script setup>
+import RegistroOperadores from './components/RegistroOperadores.vue'
+</script>
+
 <template>
-  <RegistroOperadores msg="Welcome to Your Vue.js App"/>
+  
+  <RegistroOperadores msg="Vite + Vue" />
 </template>
 
-<script>
-import RegistroOperadores from './components/RegistroOperadores.vue';
-
-
-export default {
-  name: 'App',
-  components: {
-    RegistroOperadores
-  }
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
-</script>
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>
