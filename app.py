@@ -1,31 +1,3 @@
-import os
-import pandas as pd
-from fastapi import FastAPI, Query, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-import traceback
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(BASE_DIR, "backend", "data", "operadoras_plano_saude", "Relatorio_cadop.csv")
-df = None
-
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-try:
-    df = pd.read_csv(csv_path, encoding="utf-8", sep=";")
-except Exception as e:
-    print(f"ERRO AO CARREGAR CSV: {e}")
-    df = None
-
-@app.get("/")
-def root():
-    return {"message": "API funcionando com sucesso"}
-
 @app.get("/buscar")
 def buscar_operadora(nome: str = Query(...)):
     global df
@@ -46,13 +18,12 @@ def buscar_operadora(nome: str = Query(...)):
         if resultados.empty:
             return {"mensagem": f"Nenhum resultado encontrado para '{nome}'."}
 
-        colunas_principais = [
-            "REGISTRO_OPERADORA", "CNPJ", "Razao_Social",
-            "Modalidade", "Cidade", "UF",
-            "Representante", "Cargo_Representante"
-        ]
-        resultados = resultados[colunas_principais]
-        return resultados.head(10).to_dict(orient="records")
+        # ----------------- AQUI -----------------
+        resultados_front = resultados[['Razao_Social', 'CNPJ', 'Modalidade']].rename(
+            columns={'Razao_Social': 'Operadora'}
+        )
+        return resultados_front.head(10).to_dict(orient="records")
+        # ---------------------------------------
 
     except KeyError as ke:
         raise HTTPException(status_code=500, detail=f"Erro de coluna: {str(ke)}")
