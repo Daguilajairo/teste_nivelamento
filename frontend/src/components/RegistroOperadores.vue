@@ -37,6 +37,7 @@
 <script>
 import { buscarOperadoraAPI } from "../api.js";
 
+
 export default {
   name: "CadastroOperadores",
   data() {

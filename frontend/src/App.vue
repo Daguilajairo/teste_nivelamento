@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import RegistroOperadores from '../components/RegistroOperadores.vue';
+import RegistroOperadores from './components/RegistroOperadores.vue';
 
 
 export default {
